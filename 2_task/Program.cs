@@ -15,38 +15,29 @@
 Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 */
 
-int[,] array = new int[4,4] {
+int[,] array = new int[4, 4] {
 {1,2,3,4},
 {5,83,6,54},
 {23,11,22,13},
 {0,1,5,0},
 };
-int [] array2 = new int[4];
-
-for (int i=0; i<array.GetLength(0); i++)
+int[] array2 = new int[4];
+int minSum = 9999;
+int row = 0;
+for (int i = 0; i < array.GetLength(0); i++)
 {
     int sum = 0;
 
-    for (int j=0; j<array.GetLength(1); j++)
+    for (int j = 0; j < array.GetLength(1); j++)
     {
-        sum = sum + array[i,j];
+        sum = sum + array[i, j];
     }
-array2[i] = sum;
+    array2[i] = sum;
 
+    if (sum < minSum)
+    {
+        minSum = sum;
+        row = i + 1;
+    }
 }
-if (array2[0]<array2[1] && array2[0]<array2[2] && array2[0]<array2[3])
-{
-    Console.WriteLine("первая строка");
-}
-if (array2[1]<array2[0] && array2[1]<array2[2] && array2[1]<array2[3])
-{
-    Console.WriteLine("вторая строка");
-}
-if (array2[2]<array2[0] && array2[2]<array2[1] && array2[2]<array2[3])
-{
-    Console.WriteLine("третья строка");
-}
-if (array2[3]<array2[0] && array2[3]<array2[2] && array2[3]<array2[1])
-{
-    Console.WriteLine("четвёртая строка");
-}
+Console.WriteLine("строка c наименьшей суммой: " + row);

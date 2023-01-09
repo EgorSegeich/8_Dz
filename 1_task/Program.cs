@@ -11,27 +11,26 @@
 */
 
 int[,] array = new int[3, 4] {
-{5,2,3,4},
-{5,4,6,7},
-{5,1,2,7}
+{5,2,3,9},
+{5,6,4,7},
+{7,1,2,5}
 };
 
 int temp = 0;
 for (int i = 0; i < array.GetLength(0); i++)
 {
-    for (int j = 0; j < array.GetLength(0); j++)
-        if (array[i, j] > array[i, j + 1])
-        {
-            temp = array[i, j];
-            array[i, j] = array[i, j + 1];
-            array[i, j + 1] = temp;
-        }
-}
-
-for (int i = 0; i < array.GetLength(0); i++)
-{
     for (int j = 0; j < array.GetLength(1); j++)
     {
+        int max = j;
+        for (int l = j + 1; l < array.GetLength(1); l++)
+        {
+            if (array[i, l] > array[i, max])
+            {
+                temp = array[i, l];
+                array[i, l] = array[i, max];
+                array[i, max] = temp;
+            }
+        }
         Console.Write(array[i, j] + " ");
     }
     Console.WriteLine();

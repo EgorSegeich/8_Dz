@@ -9,47 +9,35 @@
 15 18
 */
 
-int[,] array = new int[2, 2] {
-{1,3},
-{2,4},
-};
 
-int[,] array2 = new int[2, 2] {
-{3,2},
-{4,1},
-};
-
-int[,] arrayResult = new int[2, 2];
-
- for (int i = 0; i < array.GetLength(0); i++)
+void compositionOfMatrix(int[,] array1, int[,] array2)
+{
+    int[,] arrayResult = new int[array1.GetLength(1), array2.GetLength(0)];
+    for (int i = 0; i < array1.GetLength(0); i++)
+    {
+        for (int j = 0; j < array2.GetLength(1); j++)
+        {
+            for (int k = 0; k < array2.GetLength(0); k++)
             {
-                for (int j = 0; j < array2.GetLength(1); j++)
-                {
-                    for (int k = 0; k < array2.GetLength(0); k++)
-                    {
-                        arrayResult[i,j] += array[i,k] * array2[k,j];
-                        
-                    }
-                Console.Write(arrayResult[i, j]);
-                }
+                arrayResult[i, j] += array1[i, k] * array2[k, j];
             }
+            Console.Write(arrayResult[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
 
 
+int[,] array3 = new int[3, 3] {
+{1,3,5},
+{2,4,6},
+{3,1,5},
+};
 
-/*
-arrayResult[0, 0] = array[0, 0] * array2[0, 0] + array[0, 1] * array2[1, 0];
+int[,] array4 = new int[3, 3] {
+{2,6,4},
+{5,1,3},
+{5,3,1}
+};
 
-Console.WriteLine(arrayResult[0, 0]);
-
-arrayResult[0, 1] = array[0, 0] * array2[0, 1] + array[0, 1] * array2[1, 1];
-
-Console.WriteLine(arrayResult[0, 1]);
-
-arrayResult[1, 0] = array[1, 0] * array2[0, 0] + array[1, 1] * array2[1, 0];
-
-Console.WriteLine(arrayResult[1, 0]);
-
-arrayResult[1, 1] = array[1, 0] * array2[0, 1] + array[1, 1] * array2[1, 1];
-
-Console.WriteLine(arrayResult[1, 1]);
-*/
+compositionOfMatrix(array3, array4);
