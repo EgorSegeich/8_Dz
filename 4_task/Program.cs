@@ -10,6 +10,20 @@
 25 87 88
 */
 
+
+int FindRepeat(int[,] array, int rndNumber)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if (array[i, j] == rndNumber) rndNumber = 0;
+        }
+    }
+    return rndNumber;
+}
+
+
 Console.WriteLine("введите количество строк");
 int m = Convert.ToInt32(Console.ReadLine());
 
@@ -17,23 +31,28 @@ Console.WriteLine("введите количество столбцов");
 int n = Convert.ToInt32(Console.ReadLine());
 
 
-int[,] arr = new int[m, n];
+int[,] arr = new int[n, m];
+Random rnd = new Random();
 
-int metod(int i, int j)
+for (int i = 0; i < arr.GetLength(0); i++)
 {
-    for (int i = 0; i < arr.GetLength(0); i++)
+    for (int j = 0; j < arr.GetLength(1); j++)
     {
-        for (int j = 0; j < arr.GetLength(1); j++)
+        int num = rnd.Next(10, 99);
         {
-            int element = new Random().Next(10, 99);
-
-            {
-
-            }
-            arr[i, j] = new Random().Next(10, 99);
-
-            Console.Write(arr[i, j] + " ");
+            int rndNum = rnd.Next(10, 99);
+            rndNum = FindRepeat(arr, rndNum);
+            if (rndNum == 0) j--;
+            else arr[i, j] = rndNum;
         }
-        Console.WriteLine();
     }
+}
+
+for (int i = 0; i < arr.GetLength(0); i++)
+{
+    for (int j = 0; j < arr.GetLength(1); j++)
+    {
+        Console.Write(arr[i, j] + " ");
+    }
+    Console.WriteLine();
 }
